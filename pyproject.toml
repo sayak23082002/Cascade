@@ -1,0 +1,27 @@
+[project]
+name = "cascade"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "sayak23082002", email = "sayakkarui981@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "firecrawl-py>=4.43.0",
+    "google-genai>=2.25.0",
+    "langchain-core>=1.6.3",
+    "langchain-google-genai>=4.4.0",
+    "langchain-openai>=1.6.2",
+    "langgraph>=1.2.11",
+    "mcp>=2.2.0",
+    "pydantic>=2.13.5",
+    "python-dotenv>=1.2.3",
+]
+
+[project.scripts]
+cascade = "cascade:main"
+
+[build-system]
+requires = ["uv_build>=0.12.18,<0.13.0"]
+build-backend = "uv_build"

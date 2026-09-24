@@ -1,0 +1,66 @@
+Universal, Model-Agnostic Context Caching Harness
+
+To build a cache harness that works across all models—including proprietary APIs (Gemini, Anthropic, OpenAI) and self-hosted models (vLLM, SGLang, Ollama, llama.cpp)—you must understand how cross-model caching works:
+
+    1. How Local Models Cache: Inference engines like vLLM and SGLang use Automatic Prefix Caching (RadixAttention). They match the tokenized Key-Value (KV) cache of the initial tokens of a prompt across different requests. If two prompts share the exact same starting prefix, the engine reads the precomputed KV values directly from GPU memory at near-zero compute latency.
+
+    2. How Cloud APIs Cache: Providers like Anthropic, OpenAI, and Gemini also cache strictly from the first token forward (prefix matching).
+
+If your prompt changes dynamic tokens near the beginning, the entire cache breaks across every engine.
+
+Step 1: Enforce Strict "Static-Prefix" Prompt Topology
+Order every prompt strictly from most static to most dynamic:
+
+┌────────────────────────────────────────────────────────┐
+│  Tier 1: Static System Directives & Architecture Specs │  <- 100% Shared (Always Cached)
+├────────────────────────────────────────────────────────┤
+│  Tier 2: Static JSON Schemas & Guardrail Rules         │  <- 100% Shared (Always Cached)
+├────────────────────────────────────────────────────────┤
+│  Tier 3: Few-Shot Static Demonstrations                │  <- 100% Shared (Always Cached)
+├────────────────────────────────────────────────────────┤
+│  Tier 4: Dynamic Agent Card & Context (Payload)        │  <- Dynamic per Request
+├────────────────────────────────────────────────────────┤
+│  Tier 5: Dynamic Critic Feedback / Corrections         │  <- Only present during retries
+└────────────────────────────────────────────────────────┘
+
+
+
+Enabling Prefix Caching on Local Engines
+
+When deploying local models to serve as your LLM provider, pass the prefix caching flag during engine startup so the static system prefix is kept warm in the GPU's memory:
+
+    vLLM: "vllm serve mistralai/Mistral-Large-Instruct-2407 --enable-prefix-caching"
+
+    SGLang: "python3 -m sglang.launch_server --model-path mistralai/Mistral-Large-Instruct-2407"
+    # (RadixAttention prefix caching is enabled by default in SGLang)
+
+    llama.cpp / llama-server: "./llama-server -m model.gguf --prompt-cache system_prefix.bin --cache-ram 4096"
+
+With the prompt harness ensuring the prefix bytes are 100% identical on every execution, both local inference engines (via KV cache reuse) and commercial cloud APIs will run at maximum throughput and minimal token cost.
+
+
+
+
+
+
+
+
+
+
+
+
+To build a universal, reusable Python package that optimizes token costs across any agent workflow, the caching strategy must operate on two distinct levels simultaneously.
+
+1. The Dual-Layer Caching Architecture:
+    Level 1 (L1) - Application Exact Cache: This layer intercepts identical LLM requests before they are sent over the network, returning a stored output for zero compute cost. Because different dictionary key ordering produces different cache hashes, this layer relies on deterministic serialization (using sort_keys=True in json.dumps()) to ensure consistent cache hits.
+
+    Level 2 (L2) - Engine Prefix Cache: When an L1 miss occurs, the package must structure the prompt to maximize Key-Value (KV) cache reuse inside the inference engine. This targets frameworks like SGLang, which utilizes RadixAttention to match token-level prefixes, and vLLM, which hashes fixed-size token blocks. Because a single whitespace difference can invalidate the entire cached prefix at the engine level, this layer strictly isolates static content at the top of the prompt and pushes dynamic variables to the very end.
+
+2. Package Directory Structure
+Create a dedicated package named agent_cache_harness in your project root. You can import this into Phase 2, Phase 3, or any external LangGraph workflow.
+
+agent_cache_harness/
+├── __init__.py
+├── harness.py      # The main orchestrator class
+├── builder.py      # Strict prefix-preserving prompt formatter (L2)
+└── store.py        # Deterministic hashing and disk/redis storage (L1)

@@ -1,0 +1,38 @@
+Purpose and Mechanism of @model_validator(mode='after'):
+
+    In Pydantic V2, @model_validator handles cross-field validation, taking over from Pydantic V1's @root_validator.
+
+
+@model_validator(mode='after')
+def validate_rules(self):
+    ...
+    return self
+
+
+What mode='after' Does:
+
+    1. Timing in the Lifecycle: mode='after' indicates that this validation method executes after all individual field-level parsing, type coercions, and @field_validator checks have completely succeeded.
+
+    2. Input Type: The method receives self (an instantiated, strongly-typed model instance), rather than an unvalidated raw dictionary.
+
+
+Incoming JSON Dict 
+       │
+       ▼
+[mode='before' Validator] ── (Modifies raw dict if needed)
+       │
+       ▼
+[Field Type Coercion & @field_validator] ── (Validates types of each field independently)
+       │
+       ▼
+[mode='after' Validator] ── (Receives initialized instance `self`; validates relations between fields)
+       │
+       ▼
+Validated Model Object Ready for Use
+
+
+Why it is Essential Here:
+
+    1. Cross-Field Awareness: Single-field validators (@field_validator) only see their own value. In contrast, mode='after' can cross-reference fields—for example, verifying that every tool listed in agent_and_tool_dist has matching read/write permissions declared inside agent_access.
+
+    2. Pre-validated Attributes: Because type casting has already completed, you can access properties safely (self.agent_access) knowing they are valid lists, without checking for missing keys or parsing stringified arrays.

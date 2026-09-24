@@ -1,0 +1,122 @@
+{
+  "agent_id": "com.cyberbyte.inventory_agent.v1",
+  "name": "Inventory Agent",
+  "description": "Manages hardware stock availability, warehouse level tracking, and item reservations for CyberByte Hardwares.",
+  "short_name": "InventoryAgent",
+  "agent_type": "Inventory Management",
+  "version": "1.0.0",
+  "status": "production",
+  "ownership": {
+    "org": "CyberByte Hardwares",
+    "sub_org": "Warehouse & Logistics",
+    "creator": "Inventory Operations Team",
+    "license": "Internal",
+    "repository": "https://github.com/cyberbyte-hardwares/inventory-agent"
+  },
+  "specialization": {
+    "primary": "inventory_management",
+    "domain_specific": [
+      "stock_level_checks",
+      "sku_lookup",
+      "inventory_reservation",
+      "warehouse_allocation"
+    ]
+  },
+  "capabilities": {
+    "languages": ["Python", "JSON"],
+    "frameworks": ["OpenAI Agents SDK", "FastAPI", "A2A"],
+    "platforms": ["Linux", "Azure OpenAI"]
+  },
+  "tasks": {
+    "task": [
+      {
+        "name": "check_availability",
+        "description": "Check if a SKU is available and get current stock level",
+        "is_async": true,
+        "estimated_duration_sec": 2,
+        "requires_human_approval": false,
+        "idempotent": true
+      },
+      {
+        "name": "reserve_items",
+        "description": "Reserve items temporarily with a 15-minute hold for customer orders",
+        "is_async": true,
+        "estimated_duration_sec": 3,
+        "requires_human_approval": false,
+        "idempotent": false
+      },
+      {
+        "name": "release_reservation",
+        "description": "Release an active reservation and restore stock to inventory",
+        "is_async": true,
+        "estimated_duration_sec": 2,
+        "requires_human_approval": false,
+        "idempotent": false
+      },
+      {
+        "name": "confirm_reservation",
+        "description": "Confirm an inventory reservation and lock items for order fulfillment",
+        "is_async": true,
+        "estimated_duration_sec": 2,
+        "requires_human_approval": false,
+        "idempotent": false
+      },
+      {
+        "name": "find_substitutes",
+        "description": "Find available substitute hardware products when an item is out of stock",
+        "is_async": true,
+        "estimated_duration_sec": 2,
+        "requires_human_approval": false,
+        "idempotent": true
+      },
+      {
+        "name": "get_inventory_status",
+        "description": "Get comprehensive warehouse inventory status across all catalog SKUs",
+        "is_async": true,
+        "estimated_duration_sec": 3,
+        "requires_human_approval": false,
+        "idempotent": true
+      }
+    ]
+  },
+  "runtime": {
+    "language": "Python",
+    "language_version": "3.11",
+    "frameworks": ["OpenAI Agents SDK", "FastAPI", "A2A"],
+    "os_type": "Linux",
+    "architecture": "amd64"
+  },
+  "backend": {
+    "redis_required": true,
+    "postgre_required": true,
+    "vector_store": "none",
+    "vector_dimensions": 0,
+    "redis_modules": []
+  },
+  "config": {
+    "env_vars": [
+      "AZURE_OPENAI_API_BASE",
+      "AZURE_OPENAI_API_KEY",
+      "AZURE_OPENAI_API_VERSION",
+      "DEPLOYMENT_NAME",
+      "INVENTORY_DB_URL",
+      "LOG_LEVEL",
+      "AGENT_PORT",
+      "AGENT_HOST",
+      "ORCHESTRATOR_URL",
+      "ORCHESTRATOR_TOKEN"
+    ],
+    "external_config": ["./inventory_agent_card.json"],
+    "secrets": ["AZURE_OPENAI_API_KEY", "ORCHESTRATOR_TOKEN", "INVENTORY_DB_URL"]
+  },
+  "maintainers": {
+    "maintainers": [
+      {
+        "name": "Inventory Engineering Lead",
+        "contact": "inventory.team@cyberbyte.com",
+        "role": "lead",
+        "availability": "UTC"
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+1. To install packages from a pyproject.toml into an existing conda environment without creating a .venv folder, use the uv pip commands with the --system flag to target the active conda interpreter - 
+
+Step 1 - Ensure your conda environment is activated in your terminal(anaconda prompt).
+Step 2 - Install dependencies from the lockfile into the active conda environment: "uv pip sync pyproject.toml --system".
+
+
+
+2. To install "uv" in an conda environment, have to run the command: "conda install -c conda-forge uv"
+
+
+
+3. To run conda commands inside windows or vs code powershell: "conda init powershell"
+
+
+
+4. To install packages inside conda envirnment using "uv" and adding them inside "pyproject.toml" file without creating any ".env" folder: 
+    "uv add --no-sync <package_names>"
+    "uv pip install <package_names>"
+
+
+
+5. To run python scripts using "uv run" command: "uv run --no-project your_script.py"
+
+
+
+6. Remove all packages from environment `myenv` and the environment itself: "conda remove -n <myenv> --all"
+
+
+
+7. Remove all packages from the environment `myenv` but retain the environment: "conda remove -n <myenv> --all --keep-env"

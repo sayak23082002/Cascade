@@ -1,0 +1,248 @@
+[
+  {
+    "agent_objective": "To analyze business requirements documents related to core banking applications and automatically generate comprehensive and accurate test scripts that cover functional and non-functional aspects, thereby streamlining the software development lifecycle and ensuring high-quality releases.",
+    "agent_and_tool_dist": [
+      "Natural Language Processing (NLP) toolkits (e.g., spaCy, NLTK) for extracting requirements",
+      "Test script generation frameworks (e.g., Selenium, JUnit)",
+      "Requirement traceability matrix tools",
+      "Business process modeling tools",
+      "Version control systems (e.g., Git)",
+      "Continuous Integration/Continuous Deployment (CI/CD) tools",
+      "RAG Eval pipeline for evaluating generated scripts against requirements"
+    ],
+    "agent_access": [
+      "Access to business requirements documents in various formats (Word, PDF, etc.)",
+      "Access to core banking application architecture and modules documentation",
+      "Local or cloud file system where documents are stored",
+      "Integration with enterprise test management systems",
+      "Access to code repositories to align test scripts"
+    ],
+    "guardrails": [
+      "Ensure generated test scripts comply with banking regulations and security standards",
+      "Validate the accuracy and completeness of test coverage before deployment",
+      "Implement version control and audit trail for generated scripts",
+      "Include fallbacks to handle unrecognized or ambiguous requirements",
+      "Avoid generating scripts for out-of-scope or deprecated features"
+    ],
+    "agent_skills": [
+      "Advanced natural language understanding to interpret complex business requirements",
+      "Requirement decomposition and mapping to test scenarios",
+      "Automated test script synthesis in multiple formats",
+      "Knowledge of banking domain and regulatory requirements",
+      "Integration with test management and CI/CD pipelines",
+      "Error detection and correction in generated scripts"
+    ]
+  },
+  {
+    "agent_objective": "To design and implement an automated pipeline that processes business requirements documents and programmatically generates corresponding test scripts specifically for core banking applications, ensuring accuracy, compliance, and efficiency in testing cycles.",
+    "agent_and_tool_dist": [
+      "Natural Language Processing (NLP) module for requirement parsing",
+      "Test script generation engine",
+      "Core banking application domain knowledge base",
+      "Version control system integration",
+      "Continuous Integration/Continuous Deployment (CI/CD) tools",
+      "Requirements traceability matrix tool"
+    ],
+    "agent_access": [
+      "Access to business requirements documents (in formats like PDF, DOCX, or structured text)",
+      "Database or repository of core banking application modules and APIs",
+      "Local or cloud-based file storage paths for outputting test scripts",
+      "Access to test environments or simulation sandboxes for validation",
+      "Integration with RAG (Retrieval-Augmented Generation) systems for enhanced context retrieval if needed"
+    ],
+    "guardrails": [
+      "Ensure compliance with banking regulations and data privacy laws during processing",
+      "Validate generated test scripts against quality and completeness criteria before deployment",
+      "Implement secure handling of sensitive requirement data",
+      "Maintain traceability between requirements and generated test cases for audit purposes",
+      "Include error handling for ambiguous or incomplete requirements",
+      "Regularly update domain knowledge to reflect changes in banking processes"
+    ],
+    "agent_skills": [
+      "Advanced natural language understanding and semantic parsing",
+      "Test case design principles for functional and non-functional requirements",
+      "Domain expertise in core banking operations and regulations",
+      "Software development and scripting in relevant languages (e.g., Java, Python)",
+      "Integration abilities with existing SDLC tools and pipelines",
+      "Quality assurance and validation techniques for automated testing"
+    ]
+  },
+  {
+    "agent_objective": "Design and implement an automated pipeline that transforms business requirements documents related to core banking applications into executable test scripts, ensuring accuracy and efficiency in testing.",
+    "agent_and_tool_dist": [
+      "Natural Language Processing (NLP) libraries for document parsing",
+      "Automated test script generation frameworks",
+      "Core banking application APIs for integration",
+      "Version control systems for script management",
+      "Continuous Integration/Continuous Deployment (CI/CD) tools"
+    ],
+    "agent_access": [
+      "Access to business requirements documents (local or via document management systems)",
+      "Core banking application test environments and sandbox systems",
+      "Repositories or databases storing test cases and scripts",
+      "CI/CD pipelines for automated deployment and testing"
+    ],
+    "guardrails": [
+      "Ensure sensitive business data is handled securely and complies with banking regulations",
+      "Validate generated test scripts against business requirements to prevent false positives or negatives",
+      "Implement review and approval workflows before test execution",
+      "Maintain audit trails for all generated scripts and their execution results",
+      "Limit automated actions to predefined safe environments to avoid impacting live systems"
+    ],
+    "agent_skills": [
+      "Natural Language Understanding to extract functional requirements",
+      "Test script programming in relevant languages (e.g., Java, Python, or proprietary scripting languages)",
+      "Automation framework integration and orchestration",
+      "Knowledge of SDLC and testing methodologies",
+      "Security awareness and compliance handling"
+    ]
+  },
+  {
+    "agent_objective": "To analyze business requirements documents and automatically generate test scripts for core banking applications, thereby streamlining the software development lifecycle (SDLC) and improving testing efficiency.",
+    "agent_and_tool_dist": [
+      "Natural Language Processing (NLP) library for document parsing",
+      "Business Requirements Document (BRD) analysis tool",
+      "Test script generation engine (e.g., based on Gherkin syntax or custom DSL)",
+      "Core banking application domain knowledge base",
+      "Version control system integration (e.g., Git)",
+      "CI/CD pipeline integration tools"
+    ],
+    "agent_access": [
+      "Read access to business requirements documents (local files or cloud storage)",
+      "Access to a knowledge base of core banking application functionalities and test cases",
+      "Write access to a repository for generated test scripts",
+      "Integration with CI/CD platforms (e.g., Jenkins, GitLab CI, GitHub Actions)"
+    ],
+    "guardrails": [
+      "Ensure generated test scripts accurately reflect business requirements.",
+      "Maintain a high level of test script readability and maintainability.",
+      "Validate generated scripts against predefined quality standards before committing.",
+      "Implement error handling for ambiguous or incomplete requirements.",
+      "Regularly update the domain knowledge base with new banking features and regulations.",
+      "Security protocols to protect sensitive information within requirements documents."
+    ],
+    "agent_skills": [
+      "Proficiency in Natural Language Processing (NLP) and text analysis",
+      "Understanding of software testing methodologies and principles",
+      "Knowledge of core banking application architecture and functionalities",
+      "Experience with test automation frameworks and scripting languages",
+      "Ability to interpret and translate business requirements into technical specifications",
+      "Familiarity with SDLC automation strategies and CI/CD practices",
+      "Problem-solving skills for handling complex or ambiguous requirements"
+    ]
+  },
+  {
+    "agent_objective": "Manages hardware stock availability, warehouse level tracking, and item reservations for CyberByte Hardwares.",
+    "agent_and_tool_dist": [
+      "OpenAI Agents SDK",
+      "FastAPI",
+      "A2A"
+    ],
+    "agent_access": [
+      "Linux",
+      "Azure OpenAI",
+      "Redis",
+      "PostgreSQL"
+    ],
+    "guardrails": [
+      "Ensure accurate stock level updates.",
+      "Prevent over-reservation of items.",
+      "Validate reservation requests against available stock.",
+      "Implement robust error handling for all inventory operations.",
+      "Secure access to inventory data.",
+      "Regularly audit inventory records for discrepancies."
+    ],
+    "agent_skills": [
+      "Inventory Management",
+      "Stock Tracking",
+      "Reservation Systems",
+      "Database Management (PostgreSQL)",
+      "Caching (Redis)",
+      "API Development (FastAPI)",
+      "Inter-agent Communication (A2A)",
+      "Cloud Platform Integration (Azure OpenAI)"
+    ]
+  },
+  {
+    "agent_objective": "The Inventory Agent is designed to be the central nervous system for managing CyberByte Hardwares' physical and digital inventory. Its primary responsibility is to maintain real-time accuracy of hardware stock levels across all warehouse locations, facilitate the reservation of items for ongoing or planned sales orders, and manage the lifecycle of these reservations from initial booking to final confirmation or cancellation. This agent provides critical business value by preventing stockouts, optimizing warehouse operations, ensuring accurate order fulfillment, and enabling efficient resource allocation. The core objectives are to provide a reliable, automated system for checking stock availability, reserving items, releasing held stock, confirming that reserved items have been allocated, identifying suitable alternative products when primary stock is unavailable, and reporting on the overall inventory status.",
+    "agent_and_tool_dist": [
+      "OpenAI Agents SDK will be utilized as the foundational framework for building the agent, enabling it to leverage large language models for understanding requests, planning actions, and generating responses in a structured manner.",
+      "FastAPI is deployed to expose RESTful endpoints for Inter-Agent (A2A) communication, allowing other agents within the CyberByte ecosystem to programmatically interact with the Inventory Agent's functionalities (e.g., requesting stock checks, initiating reservations).",
+      "Inter-Agent (A2A) communication protocols will be implemented using FastAPI's capabilities, ensuring secure and efficient data exchange between the Inventory Agent and other agents, such as Sales Agents or Fulfillment Agents.",
+      "Linux operating system will serve as the deployment environment for the agent's services, providing a stable and secure platform for running the FastAPI application and its dependencies.",
+      "Azure OpenAI services will be integrated to provide access to powerful language models, enabling sophisticated natural language understanding, complex reasoning for inventory management tasks, and dynamic response generation.",
+      "Redis will be employed as a high-speed, in-memory data store for caching frequently accessed inventory data, managing temporary reservation states, and potentially for rate limiting A2A requests, thereby improving response times and reducing load on the primary database.",
+      "PostgreSQL will function as the primary relational database for storing persistent inventory data, including detailed item information, stock quantities per location, reservation records, and historical transaction logs, ensuring data integrity and enabling complex querying."
+    ],
+    "agent_access": [
+      "Read access to the PostgreSQL database is required to query current stock levels, retrieve item details, and check existing reservation statuses. This access is necessary for fulfilling `check_availability`, `get_inventory_status`, and `find_substitutes` tasks.",
+      "Write access to the PostgreSQL database is required to create, update, and delete reservation records, as well as to decrement stock counts upon reservation confirmation and increment them upon reservation release or cancellation. This is essential for `reserve_items`, `release_reservation`, and `confirm_reservation`.",
+      "Read and write access to Redis is required for caching inventory data to improve performance and for managing the transient state of item reservations. This supports `check_availability` and `reserve_items` by providing quick access to frequently needed information and temporary locks.",
+      "Network access to Azure OpenAI API endpoints is mandatory for leveraging the language models to interpret user requests, perform complex inventory logic, and generate appropriate responses for all agent tasks.",
+      "Network access to other internal CyberByte agent services via defined A2A endpoints (exposed by FastAPI) is necessary for seamless integration and communication, particularly for receiving requests and sending status updates."
+    ],
+    "guardrails": [
+      "All inventory updates (stock decrements, reservation creations) must be performed within ACID-compliant transactions in PostgreSQL to guarantee data consistency and prevent race conditions.",
+      "Reservation requests will be validated against current stock levels in real-time before being processed to prevent overselling.",
+      "A time-to-live (TTL) mechanism will be implemented in Redis for cached inventory data to ensure that the agent does not serve stale information for extended periods.",
+      "Reservation expiration policies will be enforced, automatically releasing reservations that are not confirmed within a predefined timeframe to free up stock.",
+      "Input validation will be performed on all incoming requests to ensure that item identifiers, quantities, and location data are in the correct format and within acceptable ranges.",
+      "Rate limiting will be applied to A2A endpoints to prevent denial-of-service attacks and ensure fair resource allocation among different agents.",
+      "Fallback mechanisms will be in place for database or Redis unavailability, potentially queuing requests or returning a 'service unavailable' status to the requesting agent.",
+      "The agent will log all significant inventory transactions and reservation state changes for auditing and debugging purposes, adhering to data retention policies.",
+      "When `find_substitutes` is invoked, the agent will prioritize substitutes based on predefined criteria such as price, performance, and compatibility, and will clearly indicate that a substitute is being offered.",
+      "The agent will ensure that reservation quantities do not exceed available stock, even when considering concurrent reservation attempts, by using atomic operations or locking mechanisms."
+    ],
+    "agent_skills": [
+      "Proficiency in real-time inventory tracking using PostgreSQL and Redis to maintain an accurate, up-to-the-second view of stock levels across all warehouses, enabling immediate responses to availability queries.",
+      "Expertise in managing item reservations, including the ability to atomically reserve stock, handle concurrent requests, and manage the lifecycle of reservations through states like pending, confirmed, and released, directly supporting `reserve_items`, `release_reservation`, and `confirm_reservation`.",
+      "Advanced analytical skills to interpret complex inventory data, identify trends, and provide comprehensive inventory status reports, fulfilling the `get_inventory_status` requirement.",
+      "Natural Language Understanding (NLU) capabilities, powered by Azure OpenAI, to interpret diverse and potentially ambiguous requests related to inventory management, translating them into actionable commands for the agent.",
+      "Problem-solving skills to identify and suggest suitable alternative products (`find_substitutes`) when primary inventory items are unavailable, considering factors like compatibility, cost, and performance, thereby minimizing lost sales opportunities.",
+      "API integration and management skills to effectively communicate with other agents via FastAPI-defined A2A endpoints, ensuring seamless data flow and coordination within the CyberByte ecosystem.",
+      "Database management skills for both PostgreSQL (for persistent data) and Redis (for caching and temporary state management), ensuring data integrity, performance, and efficient data retrieval for all inventory operations.",
+      "System administration skills for deploying and managing the agent on a Linux environment, including configuring services, monitoring performance, and ensuring system stability."
+    ]
+  },
+  {
+    "agent_objective": "The Inventory Agent is designed to be the central nervous system for managing CyberByte Hardwares' physical and digital inventory. Its primary responsibility is to maintain real-time accuracy of hardware stock levels across all warehouse locations, facilitate the reservation of items for ongoing or planned sales orders, and manage the lifecycle of these reservations from initial booking to final confirmation or cancellation. This agent provides critical business value by preventing stockouts, optimizing warehouse operations, ensuring accurate order fulfillment, and enabling efficient resource allocation. The core objectives are to provide a reliable, automated system for checking stock availability, reserving items, releasing held stock, confirming that reserved items have been allocated, identifying suitable alternative products when primary stock is unavailable, and reporting on the overall inventory status.",
+    "agent_and_tool_dist": [
+      "OpenAI Agents SDK will be utilized as the foundational framework for building the agent, enabling it to leverage large language models for understanding requests, planning actions, and generating responses in a structured manner.",
+      "FastAPI is deployed to expose RESTful endpoints for Inter-Agent (A2A) communication, allowing other agents within the CyberByte ecosystem to programmatically interact with the Inventory Agent's functionalities (e.g., requesting stock checks, initiating reservations).",
+      "Inter-Agent (A2A) communication protocols will be implemented using FastAPI's capabilities, ensuring secure and efficient data exchange between the Inventory Agent and other agents, such as Sales Agents or Fulfillment Agents.",
+      "Linux operating system will serve as the deployment environment for the agent's services, providing a stable and secure platform for running the FastAPI application and its dependencies.",
+      "Azure OpenAI services will be integrated to provide access to powerful language models, enabling sophisticated natural language understanding, complex reasoning for inventory management tasks, and dynamic response generation.",
+      "Redis will be employed as a high-speed, in-memory data store for caching frequently accessed inventory data, managing temporary reservation states, and potentially for rate limiting A2A requests, thereby improving response times and reducing load on the primary database.",
+      "PostgreSQL will function as the primary relational database for storing persistent inventory data, including detailed item information, stock quantities per location, reservation records, and historical transaction logs, ensuring data integrity and enabling complex querying."
+    ],
+    "agent_access": [
+      "Read access to the PostgreSQL database is required to query current stock levels, retrieve item details, and check existing reservation statuses. This access is necessary for fulfilling `check_availability`, `get_inventory_status`, and `find_substitutes` tasks.",
+      "Write access to the PostgreSQL database is required to create, update, and delete reservation records, as well as to decrement stock counts upon reservation confirmation and increment them upon reservation release or cancellation. This is essential for `reserve_items`, `release_reservation`, and `confirm_reservation`.",
+      "Read and write access to Redis is required for caching inventory data to improve performance and for managing the transient state of item reservations. This supports `check_availability` and `reserve_items` by providing quick access to frequently needed information and temporary locks.",
+      "Network access to Azure OpenAI API endpoints is mandatory for leveraging the language models to interpret user requests, perform complex inventory logic, and generate appropriate responses for all agent tasks.",
+      "Network access to other internal CyberByte agent services via defined A2A endpoints (exposed by FastAPI) is necessary for seamless integration and communication, particularly for receiving requests and sending status updates."
+    ],
+    "guardrails": [
+      "All inventory updates (stock decrements, reservation creations) must be performed within ACID-compliant transactions in PostgreSQL to guarantee data consistency and prevent race conditions.",
+      "Reservation requests will be validated against current stock levels in real-time before being processed to prevent overselling.",
+      "A time-to-live (TTL) mechanism will be implemented in Redis for cached inventory data to ensure that the agent does not serve stale information for extended periods.",
+      "Reservation expiration policies will be enforced, automatically releasing reservations that are not confirmed within a predefined timeframe to free up stock.",
+      "Input validation will be performed on all incoming requests to ensure that item identifiers, quantities, and location data are in the correct format and within acceptable ranges.",
+      "Rate limiting will be applied to A2A endpoints to prevent denial-of-service attacks and ensure fair resource allocation among different agents.",
+      "Fallback mechanisms will be in place for database or Redis unavailability, potentially queuing requests or returning a 'service unavailable' status to the requesting agent.",
+      "The agent will log all significant inventory transactions and reservation state changes for auditing and debugging purposes, adhering to data retention policies.",
+      "When `find_substitutes` is invoked, the agent will prioritize substitutes based on predefined criteria such as price, performance, and compatibility, and will clearly indicate that a substitute is being offered.",
+      "The agent will ensure that reservation quantities do not exceed available stock, even when considering concurrent reservation attempts, by using atomic operations or locking mechanisms."
+    ],
+    "agent_skills": [
+      "Proficiency in real-time inventory tracking using PostgreSQL and Redis to maintain an accurate, up-to-the-second view of stock levels across all warehouses, enabling immediate responses to availability queries.",
+      "Expertise in managing item reservations, including the ability to atomically reserve stock, handle concurrent requests, and manage the lifecycle of reservations through states like pending, confirmed, and released, directly supporting `reserve_items`, `release_reservation`, and `confirm_reservation`.",
+      "Advanced analytical skills to interpret complex inventory data, identify trends, and provide comprehensive inventory status reports, fulfilling the `get_inventory_status` requirement.",
+      "Natural Language Understanding (NLU) capabilities, powered by Azure OpenAI, to interpret diverse and potentially ambiguous requests related to inventory management, translating them into actionable commands for the agent.",
+      "Problem-solving skills to identify and suggest suitable alternative products (`find_substitutes`) when primary inventory items are unavailable, considering factors like compatibility, cost, and performance, thereby minimizing lost sales opportunities.",
+      "API integration and management skills to effectively communicate with other agents via FastAPI-defined A2A endpoints, ensuring seamless data flow and coordination within the CyberByte ecosystem.",
+      "Database management skills for both PostgreSQL (for persistent data) and Redis (for caching and temporary state management), ensuring data integrity, performance, and efficient data retrieval for all inventory operations.",
+      "System administration skills for deploying and managing the agent on a Linux environment, including configuring services, monitoring performance, and ensuring system stability."
+    ]
+  }
+]

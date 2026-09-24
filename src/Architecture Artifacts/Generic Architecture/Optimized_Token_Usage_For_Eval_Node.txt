@@ -1,0 +1,15 @@
+Targeted Patching vs. Full Regeneration (Preventing Token Bleeding)
+In the standard naive implementation, the LLM will regenerate the entire blueprint from scratch, which causes significant token bleeding—re-emitting hundreds of tokens that were already valid just to fix a single entry.
+
+To make this factory deterministic and cost-effective, decouple full generation from surgical correction using a Field-Level Patch Pattern.
+
+[Agent Card] ──► [Breaker Node (Generates Full Blueprint)]
+                        │
+                        ▼
+                [Validator Node] ──(Valid)──► [Human Review / Output]
+                        │
+                     (Issues)
+                        ▼
+                [Patch Node (Generates ONLY the specific corrected field)]
+                        │
+                        └──► updates state[field] ──► [Validator Node]

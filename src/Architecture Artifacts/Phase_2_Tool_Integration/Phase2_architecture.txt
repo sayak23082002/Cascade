@@ -1,0 +1,30 @@
+[Phase 1 Blueprint]
+        │
+        ▼
++-----------------------+      (Tool exists)
+| 1. Tool Matcher Agent | ------------------------> [Use Existing Tool]
++-----------------------+                                  │
+        │ (Tool missing)                                   │
+        ▼                                                  │
++-----------------------+                                  │
+| 2. Tool Builder Agent |                                  │
++-----------------------+                                  │
+        │                                                  │
+        ▼                                                  │
++-----------------------+                                  │
+| 3. Tool Eval Agent    | <--- (Executes in Anaconda)      │
++-----------------------+                                  │
+        │                                                  │
+        ▼                                                  │
++-----------------------+      (Requires API keys)         │
+| 4. HITL Config Checker| ------------------------> [Prompt User to update .env]
++-----------------------+                                  │
+        │ (No keys needed / Keys provided)                 │
+        ▼                                                  │
++-----------------------+                                  │
+| 5. Isolated Sandbox   | <--- (User manual test loop) <---┘
++-----------------------+
+        │
+        ▼
+[Commit to MCP Server Registry]
+
