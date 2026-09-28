@@ -2,7 +2,7 @@ import os
 import requests
 from langchain_google_genai import ChatGoogleGenerativeAI
 
-api_key = "AIzaSyDBzOpErkZg7bpHYe2r1EPc-kZIE3ta0Qs"
+api_key = ""
 
 # 1. Use the REST API to list models via HTTP GET
 url = f"https://generativelanguage.googleapis.com/v1beta/models?key={api_key}"
