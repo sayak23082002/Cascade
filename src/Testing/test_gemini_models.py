@@ -3,13 +3,9 @@ import requests
 from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 
-<<<<<<< HEAD
 load_dotenv(override=True)
 
 api_key = os.getenv("GEMINI_API_KEY")
-=======
-api_key = ""
->>>>>>> 7c2cfef65a7a9ceffd28a29866ea842060ae1d35
 
 # 1. Use the REST API to list models via HTTP GET
 url = f"https://generativelanguage.googleapis.com/v1beta/models?key={api_key}"
