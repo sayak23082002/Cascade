@@ -64,3 +64,47 @@ agent_cache_harness/
 ├── harness.py      # The main orchestrator class
 ├── builder.py      # Strict prefix-preserving prompt formatter (L2)
 └── store.py        # Deterministic hashing and disk/redis storage (L1)
+
+
+
+
+
+
+
+
+
+
+
+The dual-layer caching strategy operates on a simple principle: never pay an AI to think about the same problem twice, and never pay it to read the same instructions twice.
+
+Here is the step-by-step breakdown of exactly how this system processes an incoming task.
+
+    Step 1: The Request is Fingerprinted
+    When your agent factory needs a new blueprint, it gathers the specific task details (the Agent Card). Before talking to the AI, the caching harness takes this specific data and creates a unique cryptographic fingerprint (a SHA-256 hash). Even a single changed comma will generate a completely different fingerprint.
+
+    Step 2: Layer 1 (The "Skip the AI" Cache)
+    The system checks your storage database (either your local hard drive or the Redis server) to see if this exact fingerprint already exists.
+
+        If there is a match (Cache Hit): The system instantly pulls the saved blueprint from the database and returns it. The AI is completely bypassed. You pay zero tokens and experience zero processing delay.
+
+        If there is no match (Cache Miss): The system must generate a new blueprint, which triggers the next layer of the strategy.
+
+    Step 3: Formatting for Layer 2 (The Prefix Builder)
+    Because the system must now talk to the AI, it needs to assemble the prompt. AI models process text sequentially from top to bottom. To optimize costs, the harness builds the prompt in a very strict order:
+
+        The Top (Static Prefix): It places all the heavy, unchanging rules here—your extensive SEL guidelines, coding standards, and agent architecture rules. This section is identical every single time the factory runs.
+
+        The Bottom (Dynamic Payload): It places the specific Agent Card and any error feedback at the very end of the prompt.
+
+    Step 4: Layer 2 (The "AI Memory" Cache)
+    The system sends this carefully structured prompt to the AI provider (like Google's Gemini API, or your local vLLM/SGLang server).
+
+    When the AI engine receives the prompt, it checks its own internal memory (called a KV Cache). It recognizes that it has already read and processed the massive "Top" section from previous requests. Instead of reading and calculating those thousands of words again, it instantly loads its saved understanding of those rules from its GPU memory.
+
+    The AI only spends time and processing power reading the "Bottom" section. You are only billed for the new tokens at the end, dropping the cost of the massive system prompt by up to 90%.
+
+    Step 5: The Validation Bypass
+    If the AI makes a mistake and the Validator Node sends back an error, the system deliberately skips Layer 1. It knows the previous output was flawed, so it must not return the cached mistake. It goes straight to Layer 2, appending the error feedback to the very bottom of the prompt. The AI still uses its "memory" of the static rules, but generates a fresh fix based on the new feedback.
+
+    Step 6: Saving for the Future
+    Once the AI successfully generates a valid blueprint, the harness pairs that final output with the original fingerprint from Step 1. It saves this pair into your Redis or local database. The next time you (or another parallel worker agent) request a blueprint for that exact Agent Card, the system will catch it at Step 2 and skip the AI entirely.

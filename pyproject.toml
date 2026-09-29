@@ -17,6 +17,7 @@ dependencies = [
     "mcp>=2.2.0",
     "pydantic>=2.13.5",
     "python-dotenv>=1.2.3",
+    "redis>=8.1.0",
 ]
 
 [project.scripts]
@@ -25,3 +26,8 @@ cascade = "cascade:main"
 [build-system]
 requires = ["uv_build>=0.12.18,<0.13.0"]
 build-backend = "uv_build"
+
+[tool.uv.workspace]
+members = [
+    "Cascade",
+]
